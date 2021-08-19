@@ -2,9 +2,11 @@ import React, { useState } from "react";
 
 export default function HogChild({ hogsInfo }) {
   const [details, setDetails] = useState(false);
-//   console.log(details);
+  const [hideCard, setHideCard] = useState(false);
+  const addClass = "card";
   return (
-    <div className="card">
+    // <div className={hideCard?"hideHog":null}>
+    <div className={`card ${hideCard ? "hideHog" : ""}`}>
       <div className="ui image">
         <img
           src={hogsInfo.image}
@@ -19,19 +21,24 @@ export default function HogChild({ hogsInfo }) {
           className="ui button"
           onClick={() => setDetails((details) => !details)}
         >
-                  {
-                      details ? "Hide Details" :"Show Details"
-        }
+          {details ? "Hide Details" : "Show Details"}
+        </button>
+
+        <button className="ui button" onClick={() => setHideCard(true)} value={hideCard}>
+          Hide Hog
         </button>
         {details ? (
           <div class="description">
             <div>specialty : {hogsInfo.specialty}</div>
             <div>weight : {hogsInfo.weight}</div>
-                      <div>greased : {hogsInfo.greased ? "Greased" : "NonGreased"}</div>
-                      <div>highest medal achieved : { hogsInfo['highest medal achieved']}</div>
+            <div>greased : {hogsInfo.greased ? "Greased" : "NonGreased"}</div>
+            <div>
+              highest medal achieved : {hogsInfo["highest medal achieved"]}
+            </div>
           </div>
         ) : null}
       </div>
     </div>
+    // </div>
   );
 }
