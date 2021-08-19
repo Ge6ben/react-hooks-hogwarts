@@ -1,7 +1,7 @@
 import React from 'react'
 import HogChild from "../components/HogChild"
 export default function HogsParent({hogsInfo}) {
-    // console.log(hogsInfo)
+   
     return (
         <div className="ui cards">
             {

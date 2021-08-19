@@ -3,10 +3,9 @@ import React, { useState } from "react";
 export default function HogChild({ hogsInfo }) {
   const [details, setDetails] = useState(false);
   const [hideCard, setHideCard] = useState(false);
-  const addClass = "card";
+  
   return (
-    // <div className={hideCard?"hideHog":null}>
-    <div className={`card ${hideCard ? "hideHog" : ""}`}>
+     <div className={`card ${hideCard ? "hideHog" : ""}`}>
       <div className="ui image">
         <img
           src={hogsInfo.image}
