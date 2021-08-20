@@ -10,36 +10,30 @@ function App() {
   const [greased, setGreased] = useState(false);
   // true for sort by weight  | false for sort by name
   const [sortFilter, setSortFilter] = useState("name");
+  const showHogs = hogsInfo.filter((hog) => {
+    if (!greased) return hog;
+    return hog.greased === true;
+  });
 
-	const showingCard = hogsInfo
-		.filter((hog) => {
-			if (!greased) return hog;
-			return hog.greased === true;
-		});
-	  
-	showingCard.sort((a, b) => {
-		console.log(a,b)
-      if (sortFilter === "weight") return a.weight - b.weight;
-      return a.name.localeCompare(b.name);
-	});
-	
-	// console.log(hogsInfo);
-	// console.log(showingCard);
+  showHogs.sort((a, b) => {
+    if (sortFilter === "weight") return a.weight - b.weight;
+    return a.name.localeCompare(b.name);
+  });
 
-  function addNewHog(newHog) {
-    setHogsInfo([...showingCard, newHog]);
+  function onSubmit(addNewHog) {
+    setHogsInfo([...showHogs, addNewHog]);
   }
+
   return (
     <div className="App">
       <Nav />
-      <AddingNewHog onSubmit={addNewHog} />
+      <AddingNewHog onSubmit={onSubmit} />
       <Filter
         setGreased={setGreased}
         greased={greased}
-        sortFilter={sortFilter}
         setSortFilter={setSortFilter}
       />
-      <HogsParent hogsInfo={showingCard} />
+      <HogsParent hogsInfo={showHogs} />
     </div>
   );
 }
